@@ -1,0 +1,10 @@
+header {
+  object-fit: cover;
+}
+body {
+  background-color: #f2e9d0;
+}
+h2,
+p {
+  color: #f9f3e2;
+}
