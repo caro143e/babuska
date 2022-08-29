@@ -16,7 +16,7 @@
         margin-top: 5%;
       }
       article {
-        background-color: #d9a25f;
+        /* background-color: #d9a25f; */
         border: 1px solid #bfb6aa;
         padding: 1rem;
       }
@@ -26,27 +26,48 @@
       }
     </style>
   </head>
-  <header>
-    <img src="bistrotop.png" alt="bistro" />
-  </header>
+
   <body>
+    <header>
+      <img src="bistrotop.png" alt="bistro" />
+    </header>
+    <nav>
+      <button data-kategori="alle" class="valgt">Alle</button>
+      <button data-kategori="forretter">Forretter</button>
+      <button data-kategori="hovedretter">Hovedretter</button>
+      <button data-kategori="desserter">Desserter</button>
+      <button data-kategori="sideorders">Sideorders</button>
+      <button data-kategori="drikkevarer">Drikkevarer</button>
+    </nav>
     <main id="holder"></main>
     <template>
       <article>
         <h2 class="navn"></h2>
-        <img scr="" alt="" />
+        <img src="" alt="" />
         <p class="kortbeskrivelse"></p>
         <p class="pris"></p>
       </article>
     </template>
 
     <script>
+      let kategori = "alle";
       const endpoint = "https://babushka-dd8a.restdb.io/rest/menu";
       const mereinfo = {
         headers: {
           "x-apikey": "600ec2fb1346a1524ff12de4",
         },
       };
+      function start() {
+        const kategoriKnapper = document.querySelector("nav button");
+        kategoriKnapper.forEach((knap) =>
+          knap.addEventlistener("click", kategoriRetter)
+        );
+        loadJSON();
+      }
+      function kategoriRetter() {
+        kategori = this.hentData.kategori;
+      }
+
       async function hentData() {
         const response = await fetch(endpoint, mereinfo);
         const retter = await response.json();
@@ -62,8 +83,8 @@
           console.log(ret);
           const klon = skabelon.cloneNode(true);
           klon.querySelector(".navn").textContent = ret.navn;
-          klon.querySelector("img").src = "medium/" + ret.billede;
-          //klon.querySelector("img").alt = ret.fornavn;
+          klon.querySelector("img").src =
+            "medium/" + ret.billednavn + "-md.jpg";
           klon.querySelector(".kortbeskrivelse").textContent =
             ret.kortbeskrivelse;
           klon.querySelector(".pris").textContent = ret.pris;
