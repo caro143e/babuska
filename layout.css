@@ -34,4 +34,7 @@ nav {
   nav {
     display: block;
   }
+  button {
+    margin-top: 1rem;
+  }
 }
