@@ -17,4 +17,21 @@ button {
   color: #f2e9d0;
   font-size: 1rem;
   border: #e2a444;
+  padding: 8px;
+  border-radius: 20px;
+}
+nav {
+  margin-left: 10%;
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
+}
+@media screen and (max-width: 800px) {
+  article {
+    margin-top: 5%;
+  }
+  nav {
+    display: block;
+  }
 }
